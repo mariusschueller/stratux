@@ -218,7 +218,7 @@ func isOwnshipTrafficInfo(ti TrafficInfo) (isOwnshipInfo bool, shouldIgnore bool
 		prevTrackerCodeInt, _ := strconv.ParseUint(globalStatus.OGNPrevRandomAddr, 16, 32)
 		if uint32(ognTrackerCodeInt) == ti.Icao_addr || uint32(prevTrackerCodeInt) == ti.Icao_addr {
 			isOwnshipInfo = !isGPSValid() // only use OGN tracker as ownship position if we are not equipped with a GPS..
-			shouldIgnore = true
+			shouldIgnore = false  // CHANGED FROM true
 			return
 		}
 	}
@@ -232,7 +232,7 @@ func isOwnshipTrafficInfo(ti TrafficInfo) (isOwnshipInfo bool, shouldIgnore bool
 		if uint32(ownCodeInt) == ti.Icao_addr {
 			if !ti.Position_valid {
 				// Can't verify the ownship, ignore it for bearingless display
-				shouldIgnore = true
+				shouldIgnore = false  // CHANGED FROM true
 				continue
 			}
 
@@ -260,7 +260,7 @@ func isOwnshipTrafficInfo(ti TrafficInfo) (isOwnshipInfo bool, shouldIgnore bool
 				altDiff = math.Abs(float64(mySituation.BaroPressureAltitude - float32(ti.Alt)))
 			} else {
 				// Cant verify relative altitude.. ignore it but don't use
-				shouldIgnore = true
+				shouldIgnore = false  // CHANGED FROM true
 				continue
 			}
 
@@ -287,7 +287,7 @@ func isOwnshipTrafficInfo(ti TrafficInfo) (isOwnshipInfo bool, shouldIgnore bool
 				log.Printf("Using ownship %s. MaxDistIgnore: %f, maxDistOwnShip: %f, dist: %f, altDiff: %f, speed: %f, timeDiffS: %f, useForInfo: %t",
 					ownCode, maxDistMetersIgnore, maxDistMetersOwnship, trafficDist, altDiff, speed, timeDiff, isOwnshipInfo)
 			}
-			shouldIgnore = true
+			shouldIgnore = false // CHANGED FROM true
 			return
 		}
 	}
@@ -1732,3 +1732,4 @@ func initTraffic(isTraceReplayMode bool) {
 		go aisListen()
 	}
 }
+
