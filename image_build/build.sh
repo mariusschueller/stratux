@@ -21,7 +21,7 @@ rsync -av --delete stage2/10-stratux/ pi-gen/stage2/10-stratux/
 #
 # NOTE: This means local file changes will NOT be reflected in the image build
 local_git=`pwd`/../
-(cd pi-gen && rm -rf stratux && git clone ${local_git} stratux)
+(cd pi-gen && rm -rf stratux && git clone https://github.com/mariusschueller/stratux.git stratux)
 (cd pi-gen/stratux && git submodule update --init --recursive)
 # Build the stratux debian package.
 (cd pi-gen/stratux && make ddpkg)
