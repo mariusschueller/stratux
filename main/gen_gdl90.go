@@ -1231,6 +1231,8 @@ type settings struct {
 	WiFiInternetPassThroughEnabled bool
 
 	EstimateBearinglessDist bool
+	OwnshipSet bool
+
 	RadarLimits          int
 	RadarRange           int
 
@@ -1363,6 +1365,7 @@ func defaultSettings() {
 	globalSettings.StaticIps = make([]string, 0)
 	globalSettings.NoSleep = false
 	globalSettings.EstimateBearinglessDist = false
+	globalSettings.OwnshipSet = false
 
 	globalSettings.WiFiChannel = 1
 	globalSettings.WiFiIPAddress = "192.168.10.1"

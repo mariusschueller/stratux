@@ -562,6 +562,9 @@ func handleSettingsSetRequest(w http.ResponseWriter, r *http.Request) {
 						setWifiInternetPassthroughEnabled(val.(bool))
 					case "EstimateBearinglessDist":
 						globalSettings.EstimateBearinglessDist = val.(bool)
+					
+					case "OwnshipSet":
+						globalSettings.OwnshipSet = val.(bool)
 
 					case "OGNAddrType":
 						globalSettings.OGNAddrType = int(val.(float64))
