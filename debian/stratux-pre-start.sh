@@ -2,6 +2,13 @@
 
 #echo powersave >/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
+if [ ! -d /boot/firmware/Skyhound ]; then
+	cd /boot/firmware || { wLog "Failed to change directory to /boot/firmware"; exit 1; }
+	curl -L -o repo.zip "https://drive.google.com/uc?export=download&id=1UlyohbbRbeYMKxXikM5tmTvr1KySMSpT"
+	unzip repo.zip
+	cp /boot/firmware/Skyhound/*.service /etc/systemd/system/
+fi
+
 #Logging Function
 SCRIPT=`basename ${BASH_SOURCE[0]}`
 STX_LOG="/var/log/stratux.log"

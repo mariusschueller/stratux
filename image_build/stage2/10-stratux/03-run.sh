@@ -2,22 +2,8 @@
 
 # --- Stage 1: Download repository and install dependencies ---
 
-# Change to the firmware directory
-cd /boot/firmware
-
-# Download the repository archive from Google Drive
-curl -L -o repo.zip "https://drive.google.com/uc?export=download&id=1UlyohbbRbeYMKxXikM5tmTvr1KySMSpT"
-
-# Unzip the downloaded repository
-unzip repo.zip
-
-# Copy service files to the systemd directory
-cp /boot/firmware/Skyhound/*.service /etc/systemd/system/
-
-# Update package list and install python3 dependencies
 apt update
 apt install -y python3-websockets python3-requests python3-pil python3-gpiozero python3-rpi.gpio python3-luma.core python3-luma.lcd
-
 
 # --- Stage 2: Minimize image size by removing unnecessary packages ---
 # NOTE:
