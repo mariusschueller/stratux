@@ -1,10 +1,29 @@
 #!/bin/bash -e
-# Try to minimize the size of the image by removing unnecessary packages
 
+# --- Stage 1: Download repository and install dependencies ---
+
+# Change to the firmware directory
+cd /boot/firmware
+
+# Download the repository archive from Google Drive
+curl -L -o repo.zip "https://drive.google.com/uc?export=download&id=1UlyohbbRbeYMKxXikM5tmTvr1KySMSpT"
+
+# Unzip the downloaded repository
+unzip repo.zip
+
+# Copy service files to the systemd directory
+cp /boot/firmware/Skyhound/*.service /etc/systemd/system/
+
+# Update package list and install python3 dependencies
+apt update
+apt install -y python3-websockets python3-requests python3-pil python3-gpiozero python3-rpi.gpio python3-luma.core python3-luma.lcd
+
+
+# --- Stage 2: Minimize image size by removing unnecessary packages ---
 # NOTE:
 #  sed is considered an essential package
 #  gcc-12-base is not the compiler but rather the libraries
-#  lua5.1 luajit are required for bluetooth (through a dependency chain)
+#  lua5.1 and luajit are required for bluetooth (through a dependency chain)
 #  parted is required for bluetooth (through a dependency chain)
 #  dos2unix is a dependency of userconf-pi (which is installed by an export stage)
 
