@@ -2,9 +2,6 @@
 
 # --- Stage 1: Download repository and install dependencies ---
 
-apt update
-apt install -y python3-websockets python3-requests python3-pil python3-gpiozero python3-rpi.gpio python3-luma.core python3-luma.lcd
-
 # --- Stage 2: Minimize image size by removing unnecessary packages ---
 # NOTE:
 #  sed is considered an essential package
@@ -48,4 +45,14 @@ on_chroot << EOF
     apt purge -y man-db
 
     apt -y autoremove
+
+    apt update
+    
+    apt install -y python3-websockets
+    apt install -y python3-requests
+    apt install -y python3-pil 
+    apt install -y python3-gpiozero 
+    apt install -y python3-rpi.gpio 
+    apt install -y python3-luma.core 
+    apt install -y python3-luma.lcd
 EOF
