@@ -49,12 +49,15 @@ on_chroot << EOF
     apt update
     
     apt install -y python3-websockets
+    apt install -y python3-websocket
     apt install -y python3-requests
     apt install -y python3-pil 
     apt install -y python3-gpiozero 
     apt install -y python3-rpi.gpio 
     apt install -y python3-luma.core 
     apt install -y python3-luma.lcd
+    apt install -y python3-luma.oled
+    apt install -y fonts-dejavu
 EOF
 
 
