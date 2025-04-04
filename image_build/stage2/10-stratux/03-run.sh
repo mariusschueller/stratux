@@ -61,13 +61,13 @@ on_chroot << EOF
 EOF
 
 
-mkdir -p "${ROOTFS_DIR}/boot/firmware/Skyhound"
+mkdir -p "${ROOTFS_DIR}/boot/firmware/skyhound"
 
 # Copy files from your stage's data directory to /boot/firmware/Skyhound
-cp -r "${STAGE_DIR}/10-stratux/files/"* "${ROOTFS_DIR}/boot/firmware/Skyhound/"
+cp -r "${STAGE_DIR}/10-stratux/files/"* "${ROOTFS_DIR}/boot/firmware/skyhound/"
 
 # Copy the systemd service files to /etc/systemd/system
 cp -r "${ROOTFS_DIR}/boot/firmware/Skyhound/"*.service "${ROOTFS_DIR}/etc/systemd/system/"
 
 # Set permissions (not critical for FAT32, but useful for consistency)
-chmod 755 "${ROOTFS_DIR}/boot/firmware/Skyhound"
+chmod 755 "${ROOTFS_DIR}/boot/firmware/skyhound"
